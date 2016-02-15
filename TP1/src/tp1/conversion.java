@@ -23,6 +23,14 @@ public class conversion {
         }
         else if(caractere >= 'a' && caractere <= 'z')
         {
+            System.out.println("Le caractere Majuscule correspondant à " + caractere   + " est " + (char)(caractere+32) );
+        }
+        else if(caractere >= 192 && caractere <= 214)
+        {
+            System.out.println("Le caractere Minuscule correspondant à " + caractere   + " est " + (char)(caractere+32) );
+        }
+        else if(caractere >= 224 && caractere <= 246)
+        {
             System.out.println("Le caractere Majuscule correspondant à " + caractere   + " est " + (char)(caractere-32) );
         }
         else
@@ -34,7 +42,7 @@ public class conversion {
     
     public static void main(String[] args)
     {
-        conversionMaj('2');
+        conversionMaj('è');
     }
     
     
