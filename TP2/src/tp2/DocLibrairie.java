@@ -4,8 +4,10 @@ package tp2;
 public class DocLibrairie {
     
     private int numeroCopie, anneePublication;
-    private static int nbLivre = 0; 
+    private static int nbLivre = 0, nbLivreEmprunte = 0, nbLivreReserve = 0; 
     private String titre, auteurPrincipal, codeArchivage, etat;
+    private MembreLibrairie membreEmprunteur, membreReserveur;
+    
     
     public DocLibrairie(String codeArchivage, int numeroCopie, int anneePublication, String titre, String auteurPrincipal)
     {
@@ -40,6 +42,9 @@ public class DocLibrairie {
         
     }
     
+    
+    //Accesseur 
+        
     public String getCodeArchivage(){
         return codeArchivage;
     }
@@ -59,7 +64,28 @@ public class DocLibrairie {
     {
         return etat;
     }
+    public MembreLibrairie getMembreEmprunteur()
+    {
+        if(this.membreEmprunteur == null)
+        {
+            System.out.println("Le livre ne possede pas de membre emprunteur");
+        }
+        
+        return this.membreEmprunteur;
+    }
     
+    public MembreLibrairie getMembreReserveur()
+    {
+        if(this.membreReserveur == null)
+        {
+            System.out.println("Le livre ne possede pas de membre reserveur");
+        }
+        
+        return this.membreReserveur;
+    }
+            
+    
+    //Mutateur
     
     public void setAuteurPrincipal(String newAuteur){
         auteurPrincipal = newAuteur;
@@ -98,6 +124,7 @@ public class DocLibrairie {
     }
     
     
+    //Verification 
     
     private boolean verifAnnee(int annee)
     {
@@ -123,9 +150,11 @@ public class DocLibrairie {
         }
     }
     
+       
     
+    //Getion Etat livres
     
-    public void reservation()
+    public void reservation(MembreLibrairie membreReserveur)
     {
         if(this.etat == "Reserve")
         {
@@ -135,10 +164,53 @@ public class DocLibrairie {
         {
             System.out.println("Le livre a été reservé");
             etat = "Reserve";
+            this.membreReserveur = membreReserveur;
         }
     }
     
+    public void emprunt(MembreLibrairie membreEmprunteur)
+    {
+        if(this.etat == "Disponible")
+        {
+            etat = "Emprunte";
+            this.membreEmprunteur = membreEmprunteur;
+        }
+        else if(this.etat == "Reserve" && this.membreReserveur == membreEmprunteur)
+        {
+            this.membreEmprunteur = membreEmprunteur;
+            this.membreReserveur = null;
+            etat = "Emprunte";
+        }
+    }
+        
+    public void annulReservation()
+    {
+         this.etat = "Disponible";
+         this.membreEmprunteur = null;
+    }
     
-   
-   
+    public void retour()
+    {
+        if (this.etat == "Emprunte")
+        {
+            this.etat = "Retourne";
+            this.membreEmprunteur = null;
+            System.out.println("Le livre est dans la pile des retours");
+            
+        }
+    }
+    
+    public void ranger()
+    {
+        if (this.etat == "Retourne")
+        {
+            this.etat = "Disponible";
+            System.out.println("Le livre est rangé");
+        }
+        else
+        {
+            System.out.println("Le livre est déjà rangé ou réservé");
+        }
+    }
+    
 }
