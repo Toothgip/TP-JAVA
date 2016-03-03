@@ -6,7 +6,7 @@ public class TestLibrairie {
     static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
                  doc2 = new DocLibrairie("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin");
     private static Scanner input;
-    private static String titreDoc;
+    private static int choix;
     
     public static void main(String[] args)
     {
@@ -36,9 +36,11 @@ public class TestLibrairie {
         {
             
             case 1 : 
-                System.out.println("Entrer le titre du document");
-                titreDoc = input.nextLine();
-                titreDoc = input.nextLine();
+                System.out.println("Entrer le numero du document");
+                
+                TestLibrairie.afficheDoc();
+                
+                choix = input.nextInt();
                 
                 break;
             case 2:
@@ -68,17 +70,16 @@ public class TestLibrairie {
                 System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
                 
                break;
-            
-            
-            
-            
-            
-            
+
             
             
         }
         
     }
-    
+    private static void afficheDoc()
+    {
+        System.out.println("1. " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal());
+        System.out.println("2. " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal());
+    }
     
 }
