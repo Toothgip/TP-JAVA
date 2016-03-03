@@ -7,10 +7,10 @@ package tp2;
 
 
 public class MembreLibrairie {
-    private String nom, adresse;
-    private int numTel, numAbo;
+    private String nom, adresse, numTel;
+    private int numAbo;
     
-    public MembreLibrairie(String nom,String adresse, int numTel, int numAbo)
+    public MembreLibrairie(String nom,String adresse, String numTel, int numAbo)
     {
         this.adresse = adresse;
         this.nom = nom;
@@ -26,7 +26,7 @@ public class MembreLibrairie {
     {
         return nom;
     }
-    public int getNumTel()
+    public String getNumTel()
     {
         return numTel;
     }
