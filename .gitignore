@@ -1,2 +1,4 @@
 /TP2/nbproject/
 /TP2/build/
+*.xml
+*.properties
