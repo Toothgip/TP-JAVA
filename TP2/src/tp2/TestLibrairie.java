@@ -8,7 +8,7 @@ public class TestLibrairie {
     private static Scanner input;
     private static int choix, choixMembre;
     private static String newEtat;
-    
+    private static boolean quitter = false;
     private static MembreLibrairie membre1 = new MembreLibrairie("Pitrac", "Avenue Albert Einstein", "0822462246", 10),
             membre2 = new MembreLibrairie("Zlatan","Rue Dunais","0687956412",11);
     
@@ -25,214 +25,261 @@ public class TestLibrairie {
 
         System.out.println("L'annee de publication du doc 1 est " + doc1.getAnneePublication() );*/
         
-        System.out.println("1. Afficher des informations sur un document");
-        System.out.println("2. Connaître l’état d’un document");
-        System.out.println("3. Empruter un document");
-        System.out.println("4. Faire une réservation");
-        System.out.println("5. Annuler une réservation");
-        System.out.println("6. Retourner un livre");
-        System.out.println("7. Afficher le nombre de documents empruntés");
-        System.out.println("8. Afficher le nombre de documents sur la pile des retours");
-        System.out.println("9. Afficher le nombre de documents dans la section réservations\n\n");
+      
         
-        input = new Scanner(System.in);
-        
-        switch(input.nextInt())
+        while (quitter ==false)
         {
-            
-            case 1 : 
-             
-                TestLibrairie.afficheDoc();
-                
-                if (choix == 1)
-                {
-                    System.out.println("Document 1 " + doc1.getCodeArchivage() + " " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal() + " " + doc1.getAnneePublication() + " Etat: " + doc1.getEtat() );
-                }
-                else if (choix == 2)
-                {
-                    System.out.println("Document 2 " + doc2.getCodeArchivage() + " " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal() + " " + doc2.getAnneePublication() + " Etat: " + doc2.getEtat() );
-                }
-                else
-                {
-                    System.out.println("Ce document n'existe pas");
-                }
-              
-                break;
-            case 2:
-                
-                TestLibrairie.afficheDoc();
-                
-                if (choix == 1)
-                {
-                    System.out.println("Document 1 " + doc1.getEtat() );
-                }
-                else if (choix == 2)
-                {
-                    System.out.println("Document 2 " + doc2.getEtat() );
-                }
-                else
-                {
-                    System.out.println("Ce document n'existe pas");
-                }
-                
-                break;
-                
-            case 3:
-                TestLibrairie.afficheDoc();
-                
-                if (choix == 1)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc1.emprunt(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc1.emprunt(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }                                        
-                }
-                else if (choix == 2)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc2.emprunt(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc2.emprunt(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }
-                }
-                else
-                {
-                    System.out.println("Ce document n'existe pas");
-                }                       
-                
-                break;
-                
-                
-            case 4:                         
-                TestLibrairie.afficheDoc();
-                
-                if (choix == 1)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc1.reservation(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc1.reservation(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }                                        
-                }
-                else if (choix == 2)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc2.reservation(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc2.reservation(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }
-                }
-                else
-                {
-                    System.out.println("Ce document n'existe pas");
-                }                
-                
-                break;
-                
-            case 5:                   
-                TestLibrairie.afficheDoc();
-                
-                if (choix == 1)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc1.annulReservation(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc1.annulReservation(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }                                        
-                }
-                else if (choix == 2)
-                {
-                    TestLibrairie.afficheMembre();
-                    
-                    if(choixMembre == 1)
-                    {
-                        doc2.annulReservation(membre1);
-                    }
-                    else if(choixMembre == 2)
-                    {
-                        doc2.annulReservation(membre2);
-                    }
-                    else
-                    {
-                        System.out.println("Ce membre n'existe pas");
-                    }
-                }
-                else
-                {
-                    System.out.println("Ce document n'existe pas");
-                }          
-               
-                break;
-                                
-            case 6:                              
-                
-                
-                break;
-            
-            case 7:
-                System.out.println("Nombre de documents empruntés: " + DocLibrairie.getNbEmprunte());
-                break;
-                
-            case 8:
-                System.out.println("Nombre de documents sur la pile des retours: " + DocLibrairie.getNbRetour());
-                break;
-                
-            case 9:
-                System.out.println("Nombre de documents dans la section réservations: " + DocLibrairie.getNbReserve ());
-                break;
-            default:
-                
-                System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
-                
-               break;
+            System.out.println("\n\n1. Afficher des informations sur un document");
+            System.out.println("2. Connaître l’état d’un document");
+            System.out.println("3. Empruter un document");
+            System.out.println("4. Faire une réservation");
+            System.out.println("5. Annuler une réservation");
+            System.out.println("6. Retourner un livre");
+            System.out.println("7. Afficher le nombre de documents empruntés");
+            System.out.println("8. Afficher le nombre de documents sur la pile des retours");
+            System.out.println("9. Afficher le nombre de documents dans la section réservations");
+            System.out.println("10. Quitter\n\n");
 
-                        
+        
+            input = new Scanner(System.in);
+
+            switch(input.nextInt())
+            {
+
+                case 1 : 
+
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        System.out.println("Document 1 " + doc1.getCodeArchivage() + " " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal() + " " + doc1.getAnneePublication() + " Etat: " + doc1.getEtat() );
+                    }
+                    else if (choix == 2)
+                    {
+                        System.out.println("Document 2 " + doc2.getCodeArchivage() + " " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal() + " " + doc2.getAnneePublication() + " Etat: " + doc2.getEtat() );
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }
+
+                    break;
+                case 2:
+
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        System.out.println("Document 1 " + doc1.getEtat() );
+                    }
+                    else if (choix == 2)
+                    {
+                        System.out.println("Document 2 " + doc2.getEtat() );
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }
+
+                    break;
+
+                case 3:
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc1.emprunt(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc1.emprunt(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }                                        
+                    }
+                    else if (choix == 2)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc2.emprunt(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc2.emprunt(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }                       
+
+                    break;
+
+
+                case 4:                         
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc1.reservation(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc1.reservation(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }                                        
+                    }
+                    else if (choix == 2)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc2.reservation(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc2.reservation(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }                
+
+                    break;
+
+                case 5:                   
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc1.annulReservation(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc1.annulReservation(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }                                        
+                    }
+                    else if (choix == 2)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc2.annulReservation(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc2.annulReservation(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }          
+
+                    break;
+
+                case 6:                              
+                    TestLibrairie.afficheDoc();
+
+                    if (choix == 1)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc1.retour(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc1.retour(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }                                        
+                    }
+                    else if (choix == 2)
+                    {
+                        TestLibrairie.afficheMembre();
+
+                        if(choixMembre == 1)
+                        {
+                            doc2.retour(membre1);
+                        }
+                        else if(choixMembre == 2)
+                        {
+                            doc2.retour(membre2);
+                        }
+                        else
+                        {
+                            System.out.println("Ce membre n'existe pas");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Ce document n'existe pas");
+                    }          
+
+                    break;
+
+                case 7:
+                    System.out.println("Nombre de documents empruntés: " + DocLibrairie.getNbEmprunte());
+                    break;
+
+                case 8:
+                    System.out.println("Nombre de documents sur la pile des retours: " + DocLibrairie.getNbRetour());
+                    break;
+
+                case 9:
+                    System.out.println("Nombre de documents dans la section réservations: " + DocLibrairie.getNbReserve ());
+                    break;
+                case 10:
+                    quitter = true;
+                    break;
+                default:
+
+                    System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
+
+                   break;                      
+            }
         }
         
     }
