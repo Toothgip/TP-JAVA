@@ -99,8 +99,11 @@ public class DocLibrairie {
     {
         return nbLivreRetour;
     }
-            
     
+    public String toString ()
+    {
+        return("Document 1 " + codeArchivage + " " + titre + " " + auteurPrincipal + " " + anneePublication + " Etat: " + etat + "\n" );
+    }
     //Mutateur
     
     public void setAuteurPrincipal(String newAuteur){

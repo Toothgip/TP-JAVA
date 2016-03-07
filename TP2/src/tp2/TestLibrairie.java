@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class TestLibrairie {
     
-    static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
+    private static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
                  doc2 = new DocLibrairie("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin");
     private static Scanner input;
     private static int choix, choixMembre;
@@ -27,7 +27,7 @@ public class TestLibrairie {
         
       
         
-        while (quitter ==false)
+        while (quitter == false)
         {
             System.out.println("\n\n1. Afficher des informations sur un document");
             System.out.println("2. Connaître l’état d’un document");
