@@ -18,6 +18,7 @@ public class MembreLibrairie {
         this.numAbo = numAbo;
     }
     
+    
     public String getAdresse()
     {
         return adresse;
@@ -34,5 +35,10 @@ public class MembreLibrairie {
     {
         return numAbo;
     }
-
+    
+    public String toString ()
+    {
+        return("Membre :" + nom + " numéro abo: " + numAbo + " adresse: " + adresse + " numero telephone :" 
+                + numTel + "\n" );
+    }
 }

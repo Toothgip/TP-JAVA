@@ -29,7 +29,7 @@ public class TestLibrairie {
         
         while (quitter == false)
         {
-            System.out.println("\n\n1. Afficher des informations sur un document");
+            System.out.println("\n1. Afficher des informations sur un document");
             System.out.println("2. Connaître l’état d’un document");
             System.out.println("3. Empruter un document");
             System.out.println("4. Faire une réservation");
@@ -221,37 +221,12 @@ public class TestLibrairie {
 
                     if (choix == 1)
                     {
-                        TestLibrairie.afficheMembre();
-
-                        if(choixMembre == 1)
-                        {
-                            doc1.retour(membre1);
-                        }
-                        else if(choixMembre == 2)
-                        {
-                            doc1.retour(membre2);
-                        }
-                        else
-                        {
-                            System.out.println("Ce membre n'existe pas");
-                        }                                        
+                        doc1.retour();
+                                                         
                     }
                     else if (choix == 2)
                     {
-                        TestLibrairie.afficheMembre();
-
-                        if(choixMembre == 1)
-                        {
-                            doc2.retour(membre1);
-                        }
-                        else if(choixMembre == 2)
-                        {
-                            doc2.retour(membre2);
-                        }
-                        else
-                        {
-                            System.out.println("Ce membre n'existe pas");
-                        }
+                        doc2.retour();
                     }
                     else
                     {

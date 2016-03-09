@@ -53,6 +53,33 @@ public class CatalogueLibrairie {
         }
     }
     
+    
+    public void emprunter(MembreLibrairie membre, int index)
+    {
+        docs.get(index).emprunt(membre);
+    }
+    
+    public void reservation(MembreLibrairie membre, int index)
+    {
+        docs.get(index).reservation(membre);
+    }
+    
+    public void annulReservation(MembreLibrairie membre, int index)
+    {
+        docs.get(index).annulReservation(membre);
+    }
+    
+    public void retour( int index)
+    {
+        docs.get(index).retour();
+    }
+    
+    public void ranger(int index)
+    {
+        docs.get(index).ranger();
+    }
+    
+    
     public DocLibrairie get (int i)
     {
         return docs.get(i);        
@@ -61,9 +88,10 @@ public class CatalogueLibrairie {
     public void affiche ()
     {
         int i = 0;
-        while (i<docs.size())
+        while (i< docs.size())
         {
             System.out.println(docs.get(i).toString());
+            i++;
         }
     }
 }

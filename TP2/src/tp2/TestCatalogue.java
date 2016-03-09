@@ -31,6 +31,10 @@ public class TestCatalogue {
             System.out.println("2. Afficher les informations d'un document");
             System.out.println("3. Ajouter un document");
             System.out.println("4. Supprimer un document");
+            System.out.println("5. Empruter un document");
+            System.out.println("6. Faire une réservation");
+            System.out.println("7. Annuler une réservation");
+            System.out.println("8. Retourner un livre");
 
            input = new Scanner(System.in);
            switch(input.nextInt())
@@ -63,14 +67,24 @@ public class TestCatalogue {
                    {
                        docs.remove(doc2);
                    }
+                   break;
                case 5:
                    quitter = true;
                    break;
+               case 6:
+                   TestCatalogue.afficheDoc();
+
+                    docs.remove(doc1);
+              
+                   
+                   
+                   break;
+                   
                default:
                  System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
                    break;  
             }
-           input.nextInt();
+          
        }
    }
     
@@ -79,8 +93,8 @@ public class TestCatalogue {
     {
         System.out.println("Entrez le numero du document");
         
-        System.out.println("1. " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal());
-        System.out.println("2. " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal());
+        System.out.println("1. " + docs.get(1).getTitre() + " " + docs.get(1).getAuteurPrincipal());
+        System.out.println("2. " + docs.get(2).getTitre() + " " + docs.get(2).getAuteurPrincipal());
         choix = input.nextInt();
     }
     

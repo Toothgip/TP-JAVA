@@ -225,7 +225,7 @@ public class DocLibrairie {
         }
     }
     
-    public void retour(MembreLibrairie membreEmprunteur)
+    public void retour()
     {
         if (this.etat == "Emprunte")
         {
