@@ -15,16 +15,21 @@ public class TestCatalogue {
     
     private static CatalogueLibrairie docs = new CatalogueLibrairie();
     private static Scanner input;
-    private static int choix;
+    private static int choix, choixMembre;
     private static boolean quitter = false;
     private static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
                  doc2 = new DocLibrairie("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin");
+    
+    private static ListeMembres membres = new ListeMembres();
     
     public static void main(String[] args)
    {
        docs.add(doc1);
        docs.add(doc2);
        
+       membres.add(new MembreLibrairie("Pitrac", "Avenue Albert Einstein", "0822462246", 10));
+       membres.add(new MembreLibrairie("Zlatan","Rue Dunais","0687956412",11));
+               
        while(quitter == false)
        {
             System.out.println("\n1. Afficher des informations sur les documents");
@@ -35,6 +40,7 @@ public class TestCatalogue {
             System.out.println("6. Faire une réservation");
             System.out.println("7. Annuler une réservation");
             System.out.println("8. Retourner un livre");
+            System.out.println("9.Quitter");
 
            input = new Scanner(System.in);
            switch(input.nextInt())
@@ -48,38 +54,34 @@ public class TestCatalogue {
                    break;
                case 3:
                    TestCatalogue.afficheDoc();
-                   if (choix == 1)
-                   {
-                       docs.add(doc1);
-                   }
-                   else
-                   {
-                       docs.add(doc2);
-                   }
+
+                    docs.add(docs.get(choix+1));
+
                  break;
                case 4:
                    TestCatalogue.afficheDoc();
-                   if (choix == 1)
-                   {
-                       docs.remove(doc1);
-                   }
-                   else
-                   {
-                       docs.remove(doc2);
-                   }
+
+                   docs.remove(docs.get(choix+1));
+
                    break;
                case 5:
-                   quitter = true;
+                   TestCatalogue.afficheDoc();
+                   TestCatalogue.afficheMembre();
+                   
+                   //docs.emprunter(membres.get, choix);
+                   //FAIRE UNE METHODE POUR RECUPERER via l'index
+                   
                    break;
                case 6:
                    TestCatalogue.afficheDoc();
 
-                    docs.remove(doc1);
-              
+                    docs.remove(docs.get(choix +1));
                    
                    
                    break;
-                   
+               case 9:
+                   quitter = true;
+                   break;    
                default:
                  System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
                    break;  
@@ -93,9 +95,19 @@ public class TestCatalogue {
     {
         System.out.println("Entrez le numero du document");
         
-        System.out.println("1. " + docs.get(1).getTitre() + " " + docs.get(1).getAuteurPrincipal());
-        System.out.println("2. " + docs.get(2).getTitre() + " " + docs.get(2).getAuteurPrincipal());
+        System.out.println("1. " + docs.get(0).getTitre() + " " + docs.get(0).getAuteurPrincipal());
+        System.out.println("2. " + docs.get(1).getTitre() + " " + docs.get(1).getAuteurPrincipal());
         choix = input.nextInt();
+    }
+   
+   
+    private static void afficheMembre()
+    {
+        System.out.println("Entrez le membre");
+        
+        System.out.println("1. " + membres.get(0)+ " Code abo: " + membres.get(0).getNumAbo());
+        System.out.println("2. " + membres.get(1) + " Code abo: " + membres.get(1).getNumAbo());
+        choixMembre = input.nextInt();
     }
     
 }
