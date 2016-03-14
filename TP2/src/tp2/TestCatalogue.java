@@ -68,7 +68,7 @@ public class TestCatalogue {
                    TestCatalogue.afficheDoc();
                    TestCatalogue.afficheMembre();
                    
-                   //docs.emprunter(membres.get, choix);
+                   docs.emprunter(membres.get(choixMembre), choix);
                    //FAIRE UNE METHODE POUR RECUPERER via l'index
                    
                    break;
@@ -108,6 +108,14 @@ public class TestCatalogue {
         System.out.println("1. " + membres.get(0)+ " Code abo: " + membres.get(0).getNumAbo());
         System.out.println("2. " + membres.get(1) + " Code abo: " + membres.get(1).getNumAbo());
         choixMembre = input.nextInt();
+        if(input.nextInt() == 1)
+        {
+            choixMembre = membres.get(0).getNumAbo();
+        }
+        else if(input.nextInt() == 2)
+        {
+            choixMembre = membres.get(1).getNumAbo();
+        }
     }
     
 }
