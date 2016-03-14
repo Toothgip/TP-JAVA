@@ -55,29 +55,39 @@ public class TestCatalogue {
                case 3:
                    TestCatalogue.afficheDoc();
 
-                    docs.add(docs.get(choix+1));
+                    docs.add(docs.get(choix-1));
 
                  break;
                case 4:
                    TestCatalogue.afficheDoc();
 
-                   docs.remove(docs.get(choix+1));
+                   docs.remove(docs.get(choix-1));
 
                    break;
                case 5:
                    TestCatalogue.afficheDoc();
                    TestCatalogue.afficheMembre();
                    
-                   docs.emprunter(membres.get(choixMembre), choix);
-                   //FAIRE UNE METHODE POUR RECUPERER via l'index
-                   
+                   docs.emprunter(membres.get(choixMembre), choix -1);                 
                    break;
                case 6:
                    TestCatalogue.afficheDoc();
-
-                    docs.remove(docs.get(choix +1));
+                   TestCatalogue.afficheMembre();
                    
+                    docs.reservation(membres.get(choixMembre), choix-1);
                    
+                    break;
+               case 7:
+                   TestCatalogue.afficheDoc();
+                   TestCatalogue.afficheMembre();
+                                      
+                    docs.annulReservation(membres.get(choixMembre), choix-1);
+                    
+                    break;
+               case 8:
+                   TestCatalogue.afficheDoc();
+                   
+                   docs.retour(choix-1);
                    break;
                case 9:
                    quitter = true;
@@ -94,9 +104,15 @@ public class TestCatalogue {
    private static void afficheDoc()
     {
         System.out.println("Entrez le numero du document");
+        int i = 0;
+        while (i < docs.size() )
+        {
+            System.out.println(i+1 + ". " + docs.get(i).getTitre() + " " + 
+                    docs.get(i).getAuteurPrincipal());
+            i++;
+        }
         
-        System.out.println("1. " + docs.get(0).getTitre() + " " + docs.get(0).getAuteurPrincipal());
-        System.out.println("2. " + docs.get(1).getTitre() + " " + docs.get(1).getAuteurPrincipal());
+        //System.out.println("2. " + docs.get(1).getTitre() + " " + docs.get(1).getAuteurPrincipal());
         choix = input.nextInt();
     }
    
@@ -105,16 +121,16 @@ public class TestCatalogue {
     {
         System.out.println("Entrez le membre");
         
-        System.out.println("1. " + membres.get(0)+ " Code abo: " + membres.get(0).getNumAbo());
-        System.out.println("2. " + membres.get(1) + " Code abo: " + membres.get(1).getNumAbo());
-        choixMembre = input.nextInt();
+        System.out.println("1. " + membres.get(10).getNom()+ " Code abo: " + membres.get(10).getNumAbo());
+        System.out.println("2. " + membres.get(11).getNom() + " Code abo: " + membres.get(11).getNumAbo());
+      //  choixMembre = input.nextInt();
         if(input.nextInt() == 1)
         {
-            choixMembre = membres.get(0).getNumAbo();
+            choixMembre = membres.get(10).getNumAbo();
         }
         else if(input.nextInt() == 2)
         {
-            choixMembre = membres.get(1).getNumAbo();
+            choixMembre = membres.get(11).getNumAbo();
         }
     }
     

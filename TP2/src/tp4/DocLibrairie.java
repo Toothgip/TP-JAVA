@@ -1,12 +1,12 @@
 
-package tp2;
+package tp4;
 
 public class DocLibrairie {
     
-    private int numeroCopie, anneePublication;
-    private static int nbLivre = 0, nbLivreEmprunte = 0, nbLivreReserve = 0, nbLivreRetour = 0; 
-    private String titre, auteurPrincipal, codeArchivage, etat;
-    private MembreLibrairie membreEmprunteur, membreReserveur;
+    protected int numeroCopie, anneePublication;
+    protected static int nbLivre = 0, nbLivreEmprunte = 0, nbLivreReserve = 0, nbLivreRetour = 0; 
+    protected String titre, auteurPrincipal, codeArchivage, etat;
+    protected MembreLibrairie membreEmprunteur, membreReserveur;
     
     
     public DocLibrairie(String codeArchivage, int numeroCopie, int anneePublication, String titre, String auteurPrincipal)
@@ -102,7 +102,7 @@ public class DocLibrairie {
     
     public String toString ()
     {
-        return("Document : "+ codeArchivage + " " + titre + " " + auteurPrincipal + " " + anneePublication + " Etat: " + etat + "\n" );
+        return("Document : "+ codeArchivage + " " + titre + " " + auteurPrincipal + " " + anneePublication + " Etat: " + etat + " " );
     }
     //Mutateur
     

@@ -94,4 +94,9 @@ public class CatalogueLibrairie {
             i++;
         }
     }
+    
+    public int size()
+    {
+        return docs.size();
+    }
 }
