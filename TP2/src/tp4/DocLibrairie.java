@@ -3,24 +3,14 @@ package tp4;
 
 public class DocLibrairie {
     
-    protected int numeroCopie, anneePublication;
-    protected static int nbLivre = 0, nbLivreEmprunte = 0, nbLivreReserve = 0, nbLivreRetour = 0; 
-    protected String titre, auteurPrincipal, codeArchivage, etat;
-    protected MembreLibrairie membreEmprunteur, membreReserveur;
+    protected int anneePublication;
+    protected String titre, auteurPrincipal, codeArchivage;
     
     
-    public DocLibrairie(String codeArchivage, int numeroCopie, int anneePublication, String titre, String auteurPrincipal)
+    public DocLibrairie(String codeArchivage, int anneePublication, String titre,
+            String auteurPrincipal)
     {
         this.codeArchivage = codeArchivage;
-        
-        if(verifNumero(numeroCopie) == true)
-        {
-            this.numeroCopie = numeroCopie;
-        }
-        else
-        {
-            System.out.println("Numero de copie invalide");
-        }
         
         
         if(this.verifAnnee(anneePublication) == true)
@@ -36,11 +26,7 @@ public class DocLibrairie {
         this.auteurPrincipal = auteurPrincipal;
         this.titre = titre;
         
-        etat = "Disponible";
-        
-        nbLivre ++;        
     }
-    
     
     //Accesseur 
         
@@ -53,56 +39,15 @@ public class DocLibrairie {
     public String getAuteurPrincipal(){
         return auteurPrincipal;
     }
-    public int getNumeroCopie(){
-        return numeroCopie;
-    }
+
     public int getAnneePublication(){
         return anneePublication;
     }
-    public String getEtat()
-    {
-        return etat;
-    }
-    public MembreLibrairie getMembreEmprunteur()
-    {
-        if(this.membreEmprunteur == null)
-        {
-            System.out.println("Le livre ne possede pas de membre emprunteur");
-        }
-        
-        return this.membreEmprunteur;
-    }
-    
-    public MembreLibrairie getMembreReserveur()
-    {
-        if(this.membreReserveur == null)
-        {
-            System.out.println("Le livre ne possede pas de membre reserveur");
-        }
-        
-        return this.membreReserveur;
-    }
-    
-    public static int getNbLivre()
-    {
-        return nbLivre;
-    }
-    public static int getNbEmprunte()
-    {
-        return nbLivreEmprunte;
-    }
-    public static int getNbReserve()
-    {
-        return nbLivreReserve;
-    }
-    public static int getNbRetour()
-    {
-        return nbLivreRetour;
-    }
-    
+
     public String toString ()
     {
-        return("Document : "+ codeArchivage + " " + titre + " " + auteurPrincipal + " " + anneePublication + " Etat: " + etat + " " );
+        return("Document : "+ codeArchivage + " " + titre + " " + auteurPrincipal +
+                " " + anneePublication);
     }
     //Mutateur
     
@@ -123,23 +68,9 @@ public class DocLibrairie {
             System.out.println("Année invalide");
         }
     }
-    public void setNumeroCopie(int newNumero){
-        numeroCopie = newNumero;
-    }
+
     public void setTitre(String newTitre){
         titre = newTitre;
-    }
-    
-    public void setEtat(String newEtat)
-    {
-        if(newEtat == "Disponible" || newEtat == "Reserve" || newEtat == "Emprunte" || newEtat == "Retourne")
-        {
-           etat = newEtat;
-        }
-        else
-        {
-            System.out.println("L'etat entré est invalide les etats possibles sont : Disponible, Reserve, Emprunte, Retourne" + newEtat);
-        }
     }
     
     
@@ -157,101 +88,25 @@ public class DocLibrairie {
         }
     }
     
-    private boolean verifNumero(int numero)
-    {
-        if(numero > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
-       
-    
-    //Getion Etat livres
-    
     public void reservation(MembreLibrairie membreReserveur)
     {
-        if(this.etat == "Emprunte")
-        {
-            System.out.println("Le livre a été reservé par " + membreReserveur.getNom());
-            etat = "Reserve";
-            this.membreReserveur = membreReserveur;
-            nbLivreReserve ++;
-        }
-        else
-        {
-            System.out.println("Le livre n'est pas disponible à la réservation");
-        }
+        System.out.println("Ce document n'est pas réservable");
     }
     
     public void emprunt(MembreLibrairie membreEmprunteur)
     {
-        if(this.etat == "Disponible")
-        {
-            etat = "Emprunte";
-            this.membreEmprunteur = membreEmprunteur;
-            nbLivreEmprunte ++;
-            System.out.println("Le livre a été emprunté par " + membreEmprunteur.getNom());
-        }
-        else if(this.etat == "Reserve" && this.membreReserveur == membreEmprunteur)
-        {
-            this.membreEmprunteur = membreEmprunteur;
-            this.membreReserveur = null;
-            etat = "Emprunte";
-            System.out.println("Le livre a été emprunté par " + membreEmprunteur.getNom());
-        }
-        else
-        {
-            System.out.println("Le livre ne peut pas être emprunté");
-        }
+        System.out.println("Ce document n'est pas empruntable");
     }
         
     public void annulReservation(MembreLibrairie membreReserveur)
     {
-        if(membreReserveur == this.membreReserveur)
-        {
-            this.etat = "Disponible";
-            this.membreReserveur = null;
-            System.out.println("La réservation de "+ membreReserveur.getNom() + " a été annulée");
-            nbLivreReserve --;
-        }
-        else
-        {
-            System.out.println("Ce livre n'a pas été réservé par "+ membreReserveur.getNom());
-        }
+        System.out.println("Ce document n'est pas réservable");
     }
     
     public void retour()
     {
-        if (this.etat == "Emprunte")
-        {
-            this.etat = "Retourne";
-            this.membreEmprunteur = null;
-            System.out.println("Le livre est dans la pile des retours");
-            nbLivreEmprunte --;
-            nbLivreRetour ++;
-        }
-        else
-        {
-            System.out.println("Ce livre n'a pas été emprunté");
-        }
+        System.out.println("Ce document n'est pas retournable");
     }
     
-    public void ranger()
-    {
-        if (this.etat == "Retourne")
-        {
-            this.etat = "Disponible";
-            System.out.println("Le livre est rangé");
-            nbLivreRetour --;
-        }
-        else
-        {
-            System.out.println("Le livre est déjà rangé ou réservé");
-        }
-    }
+    
 }

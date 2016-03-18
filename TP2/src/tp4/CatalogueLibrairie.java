@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp2;
+package tp4;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CatalogueLibrairie {
     
     private ArrayList<DocLibrairie> docs;
-    private int nbDoc = 0;
+    private int nbDoc = 0, nbLivre = 0, nbCD = 0;
     
     public CatalogueLibrairie ()
     {
@@ -25,6 +25,14 @@ public class CatalogueLibrairie {
     {
         if (doc != null)
         {
+            if(doc.equals(new Livre()))
+            {
+                nbLivre ++;
+            }
+            else if (doc.equals(new CD()))
+            {
+                nbCD ++;
+            }
             docs.add(doc);
             nbDoc ++;
             System.out.println("Le document a été ajouté");
@@ -46,6 +54,14 @@ public class CatalogueLibrairie {
             }
             if (doc == docs.get(i))
             {
+                if(doc.equals(new Livre()))
+                {
+                    nbLivre --;
+                }
+                else if (doc.equals(new CD()))
+                {
+                    nbCD --;
+                }
                 docs.remove(i);
                 System.out.println("Le document a été supprimé");
             }
@@ -59,46 +75,15 @@ public class CatalogueLibrairie {
             System.out.println("Ce document n'est pas dans la liste");
         }
         
+    } 
+    
+    public int compteLivres(){
+        return nbLivre;
     }
     
-    
-    public void emprunter(MembreLibrairie membre, int index)
-    {
-        if (index <= docs.size()-1)
-            docs.get(index).emprunt(membre);
-        else
-            System.out.println("Ce document n'existe pas"); 
+    public int compteCD(){
+        return nbCD;
     }
-    
-    public void reservation(MembreLibrairie membre, int index)
-    {
-        if (index <= docs.size()-1)
-            docs.get(index).reservation(membre);
-        else 
-            System.out.println("Ce document n'existe pas"); 
-    }
-    
-    public void annulReservation(MembreLibrairie membre, int index)
-    {
-        if (index <= docs.size()-1)
-            docs.get(index).annulReservation(membre);
-        else
-            System.out.println("Ce document n'existe pas");    
-    }
-    
-    public void retour( int index)
-    {
-        if (index <= docs.size()-1)
-            docs.get(index).retour();
-        else
-            System.out.println("Ce document n'existe pas");    
-    }
-    
-    public void ranger(int index)
-    {
-        docs.get(index).ranger();
-    }
-    
     
     public DocLibrairie get (int i)
     {
@@ -123,4 +108,6 @@ public class CatalogueLibrairie {
     {
         return docs.size();
     }
+    
+    
 }

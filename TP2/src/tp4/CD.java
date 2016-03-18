@@ -1,0 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tp4;
+
+/**
+ *
+ * @author p1501257
+ */
+public class CD extends DocLibrairiePhysique{
+    
+    
+    protected String listeMorceaux;
+    
+    public CD (String codeArchivage, int numeroCopie, int anneePublication, String titre,
+          String auteurPrincipal,String listeMorceaux){
+        super( codeArchivage,numeroCopie,anneePublication,titre,auteurPrincipal);
+        this.listeMorceaux = listeMorceaux;
+        
+    }
+    
+    CD(){
+        super("", 0, 0 ,  "", "");
+    }
+}

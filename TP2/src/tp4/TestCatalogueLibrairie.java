@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp2;
+package tp4;
 
 import java.util.Scanner;
 
@@ -11,21 +11,30 @@ import java.util.Scanner;
  *
  * @author p1501257
  */
-public class TestCatalogue {
-    
+public class TestCatalogueLibrairie {
     private static CatalogueLibrairie docs = new CatalogueLibrairie();
     private static Scanner input;
     private static int choix, choixMembre;
     private static boolean quitter = false;
-    private static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
-                 doc2 = new DocLibrairie("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin");
+   
+    private static Livre livre1 = new Livre("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc","PitracCorp","044524-454-5",12),
+                 livre2 = new Livre("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin","Hachette","005464578",42);
+    private static DocURL url1 = new DocURL("045640 450687", 2007, "PitracLeDieu",
+          "Pitrac","www.pitracDieu.com","La vie résumée du Dieu Pitrac.");
+    private static CD cd1 = new CD ("045646548 45FDGP",15, 2012, "Kinedaire",
+          "Cortex","1.Es Muy Bueno\n2.El Country\n3.La Surpreza\n4.The Egg");
+    
+    private static DocLibrairiePhysique docPhy= new DocLibrairiePhysique("", 0, 0, 
+            "", "");
+    
     
     private static ListeMembres membres = new ListeMembres();
     
     public static void main(String[] args)
    {
-       docs.add(doc1);
-       docs.add(doc2);
+       docs.add(livre1);
+       docs.add(url1);
+       
        
        membres.add(new MembreLibrairie("Pitrac", "Avenue Albert Einstein", "0822462246", 10));
        membres.add(new MembreLibrairie("Zlatan","Rue Dunais","0687956412",11));
@@ -49,7 +58,7 @@ public class TestCatalogue {
                    docs.affiche();
                    break;
                case 2: 
-                   TestCatalogue.afficheDoc();
+                   TestCatalogueLibrairie.afficheDoc();
                    
                    if (choix <= docs.size()-1)
                        System.out.println(docs.get(choix).toString());
@@ -57,48 +66,62 @@ public class TestCatalogue {
                        System.out.println("Ce document n'existe pas");
                    break;
                case 3:
-                   TestCatalogue.choisiDoc();
+                   TestCatalogueLibrairie.choisiDoc();
 
-                    if(choix == 1)
-                    {
-                        docs.add(doc1);
-                    }
-                    else if(choix == 2)
-                    {
-                        docs.add(doc2);
-                    }
-                    
+                   switch(choix)
+                   {
+                       case 1:
+                           docs.add(livre1);
+                           break;
+                       case 2:
+                           docs.add(livre2);
+                           break;
+                       case 3:
+                           docs.add(url1);
+                           break;
+                       case 4:
+                           docs.add(cd1);
+                           break;    
+                   }               
                  break;
                case 4:
-                   TestCatalogue.afficheDoc();
+                   TestCatalogueLibrairie.afficheDoc();
 
                    docs.remove(docs.get(choix-1));
 
                    break;
                case 5:
-                   TestCatalogue.afficheDoc();
-                   TestCatalogue.afficheMembre();
-                   
-                   docs.emprunter(membres.get(choixMembre), choix -1);                 
+                   TestCatalogueLibrairie.afficheDoc();
+                   TestCatalogueLibrairie.afficheMembre();
+
+                      docs.get(choix -1).emprunt(membres.get(choixMembre));
+
+                  
                    break;
                case 6:
-                   TestCatalogue.afficheDoc();
-                   TestCatalogue.afficheMembre();
+                   TestCatalogueLibrairie.afficheDoc();
+                   TestCatalogueLibrairie.afficheMembre();
                    
-                    docs.reservation(membres.get(choixMembre), choix-1);
+                 
+                    docs.get(choix -1).reservation(membres.get(choixMembre));
+
+                   
                    
                     break;
                case 7:
-                   TestCatalogue.afficheDoc();
-                   TestCatalogue.afficheMembre();
-                                      
-                    docs.annulReservation(membres.get(choixMembre), choix-1);
+                   TestCatalogueLibrairie.afficheDoc();
+                   TestCatalogueLibrairie.afficheMembre();
+                    
+
+                    docs.get(choix -1).annulReservation(membres.get(choixMembre));
+
                     
                     break;
                case 8:
-                   TestCatalogue.afficheDoc();
+                   TestCatalogueLibrairie.afficheDoc();
                    
-                   docs.retour(choix-1);
+                    docs.get(choix -1).retour();
+
                    break;
                case 9:
                    quitter = true;
@@ -133,7 +156,6 @@ public class TestCatalogue {
         
         System.out.println("1. " + membres.get(10).getNom()+ " Code abo: " + membres.get(10).getNumAbo());
         System.out.println("2. " + membres.get(11).getNom() + " Code abo: " + membres.get(11).getNumAbo());
-      //  choixMembre = input.nextInt();
         if(input.nextInt() == 1)
         {
             choixMembre = membres.get(10).getNumAbo();
@@ -148,9 +170,12 @@ public class TestCatalogue {
     {
         System.out.println("Entrez le numero du document");
         
-        System.out.println("1. " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal());
-        System.out.println("2. " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal());
+        System.out.println("1. " + livre1.getTitre()+ " " + livre1.getAuteurPrincipal());
+        System.out.println("2. " + livre2.getTitre()+ " " + livre2.getAuteurPrincipal());
+        System.out.println("3. " + url1.getTitre()+ " " + url1.getAuteurPrincipal());
+        System.out.println("4. " + cd1.getTitre()+ " " + cd1.getAuteurPrincipal());
+                
+        
         choix = input.nextInt();
     }
-    
 }

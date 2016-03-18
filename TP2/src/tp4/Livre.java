@@ -9,7 +9,7 @@ package tp4;
  *
  * @author Thomas
  */
-public class Livre extends DocLibrairie {
+public class Livre extends DocLibrairiePhysique {
     
     protected String nomEditeur, NumIsbn;
     protected int nbPages;
@@ -24,9 +24,16 @@ public class Livre extends DocLibrairie {
         this.NumIsbn = numIsbn;
     }
     
+    Livre()
+    {
+        super("", 0, 0 ,  "", "");
+    }
+    
     
     public String toString()
     {
-        return "Livre " + codeArchivage + " " + titre + "écrit par "+ auteurPrincipal + "édité par " + nomEditeur; 
+        return "Livre " + codeArchivage + " " + titre + " écrit par "+ auteurPrincipal +
+                " édité par " + nomEditeur + " publié en " + anneePublication + " nombre de pages " +
+                nbPages + " etat : " + etat; 
     }
 }

@@ -1,10 +1,20 @@
-package tp2;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tp4;
+
 import java.util.Scanner;
 
-public class TestLibrairie {
+/**
+ *
+ * @author p1501257
+ */
+public class testLivre {
     
-    private static DocLibrairie doc1 = new DocLibrairie("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc"),
-                 doc2 = new DocLibrairie("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin");
+    private static Livre livre1 = new Livre("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc","PitracCorp","044524-454-5",12),
+                 livre2 = new Livre("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin","Hachette","005464578",42);
     private static Scanner input;
     private static int choix, choixMembre;
     private static String newEtat;
@@ -17,16 +27,16 @@ public class TestLibrairie {
       
         while (quitter == false)
         {
-            System.out.println("\n1. Afficher des informations sur un document");
-            System.out.println("2. Connaître l’état d’un document");
-            System.out.println("3. Empruter un document");
+            System.out.println("\n1. Afficher des informations sur un livre");
+            System.out.println("2. Connaître l’état d’un livre");
+            System.out.println("3. Empruter un livre");
             System.out.println("4. Faire une réservation");
             System.out.println("5. Annuler une réservation");
             System.out.println("6. Retourner un livre");
-            System.out.println("7. Afficher le nombre de documents empruntés");
-            System.out.println("8. Afficher le nombre de documents sur la pile des retours");
-            System.out.println("9. Afficher le nombre de documents dans la section réservations");
-            System.out.println("10. Quitter\n\n");
+            System.out.println("7. Afficher le nombre de livres empruntés");
+            System.out.println("8. Afficher le nombre de livres sur la pile des retours");
+            System.out.println("9. Afficher le nombre de livres dans la section réservations");
+            System.out.println("10. Quitter\n");
 
         
             input = new Scanner(System.in);
@@ -36,55 +46,55 @@ public class TestLibrairie {
 
                 case 1 : 
 
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        System.out.println("Document 1 " + doc1.getCodeArchivage() + " " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal() + " " + doc1.getAnneePublication() + " Etat: " + doc1.getEtat() );
+                        System.out.println(livre1.toString());
                     }
                     else if (choix == 2)
                     {
-                        System.out.println("Document 2 " + doc2.getCodeArchivage() + " " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal() + " " + doc2.getAnneePublication() + " Etat: " + doc2.getEtat() );
+                        System.out.println(livre2.toString());
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }
 
                     break;
                 case 2:
 
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        System.out.println("Document 1 " + doc1.getEtat() );
+                        System.out.println("Livre 1 " + livre1.getEtat() );
                     }
                     else if (choix == 2)
                     {
-                        System.out.println("Document 2 " + doc2.getEtat() );
+                        System.out.println("Livre 2 " + livre2.getEtat() );
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }
 
                     break;
 
                 case 3:
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc1.emprunt(membre1);
+                            livre1.emprunt(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc1.emprunt(membre2);
+                            livre1.emprunt(membre2);
                         }
                         else
                         {
@@ -93,15 +103,15 @@ public class TestLibrairie {
                     }
                     else if (choix == 2)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc2.emprunt(membre1);
+                            livre2.emprunt(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc2.emprunt(membre2);
+                            livre2.emprunt(membre2);
                         }
                         else
                         {
@@ -110,26 +120,26 @@ public class TestLibrairie {
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }                       
 
                     break;
 
 
                 case 4:                         
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc1.reservation(membre1);
+                            livre1.reservation(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc1.reservation(membre2);
+                            livre1.reservation(membre2);
                         }
                         else
                         {
@@ -138,15 +148,15 @@ public class TestLibrairie {
                     }
                     else if (choix == 2)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc2.reservation(membre1);
+                            livre2.reservation(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc2.reservation(membre2);
+                            livre2.reservation(membre2);
                         }
                         else
                         {
@@ -155,25 +165,25 @@ public class TestLibrairie {
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }                
 
                     break;
 
                 case 5:                   
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc1.annulReservation(membre1);
+                            livre1.annulReservation(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc1.annulReservation(membre2);
+                            livre1.annulReservation(membre2);
                         }
                         else
                         {
@@ -182,15 +192,15 @@ public class TestLibrairie {
                     }
                     else if (choix == 2)
                     {
-                        TestLibrairie.afficheMembre();
+                        testLivre.afficheMembre();
 
                         if(choixMembre == 1)
                         {
-                            doc2.annulReservation(membre1);
+                            livre2.annulReservation(membre1);
                         }
                         else if(choixMembre == 2)
                         {
-                            doc2.annulReservation(membre2);
+                            livre2.annulReservation(membre2);
                         }
                         else
                         {
@@ -199,40 +209,40 @@ public class TestLibrairie {
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }          
 
                     break;
 
                 case 6:                              
-                    TestLibrairie.afficheDoc();
+                    testLivre.afficheDoc();
 
                     if (choix == 1)
                     {
-                        doc1.retour();
+                        livre1.retour();
                                                          
                     }
                     else if (choix == 2)
                     {
-                        doc2.retour();
+                        livre2.retour();
                     }
                     else
                     {
-                        System.out.println("Ce document n'existe pas");
+                        System.out.println("Ce livre n'existe pas");
                     }          
 
                     break;
 
                 case 7:
-                    System.out.println("Nombre de documents empruntés: " + DocLibrairie.getNbEmprunte());
+                    System.out.println("Nombre de livres empruntés: " + tp2.DocLibrairie.getNbEmprunte());
                     break;
 
                 case 8:
-                    System.out.println("Nombre de documents sur la pile des retours: " + DocLibrairie.getNbRetour());
+                    System.out.println("Nombre de livres sur la pile des retours: " + tp2.DocLibrairie.getNbRetour());
                     break;
 
                 case 9:
-                    System.out.println("Nombre de documents dans la section réservations: " + DocLibrairie.getNbReserve ());
+                    System.out.println("Nombre de livres dans la section réservations: " + tp2.DocLibrairie.getNbReserve ());
                     break;
                 case 10:
                     quitter = true;
@@ -248,10 +258,10 @@ public class TestLibrairie {
     }
     private static void afficheDoc()
     {
-        System.out.println("Entrez le numero du document");
+        System.out.println("Entrez le numero du livre");
         
-        System.out.println("1. " + doc1.getTitre()+ " " + doc1.getAuteurPrincipal());
-        System.out.println("2. " + doc2.getTitre()+ " " + doc2.getAuteurPrincipal());
+        System.out.println("1. " + livre1.getTitre()+ " " + livre1.getAuteurPrincipal());
+        System.out.println("2. " + livre2.getTitre()+ " " + livre2.getAuteurPrincipal());
         choix = input.nextInt();
     }
     
@@ -263,5 +273,6 @@ public class TestLibrairie {
         System.out.println("2. " + membre2.getNom());
         choixMembre = input.nextInt();
     }
+    
     
 }
