@@ -4,7 +4,7 @@ package tp4;
 public class DocLibrairie {
     
     protected int anneePublication;
-    protected String titre, auteurPrincipal, codeArchivage;
+    protected String titre, auteurPrincipal, codeArchivage, type = "";
     
     
     public DocLibrairie(String codeArchivage, int anneePublication, String titre,
@@ -42,6 +42,11 @@ public class DocLibrairie {
 
     public int getAnneePublication(){
         return anneePublication;
+    }
+    
+    public String getType()
+    {
+        return type;
     }
 
     public String toString ()

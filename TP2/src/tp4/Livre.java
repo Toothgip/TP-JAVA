@@ -22,6 +22,7 @@ public class Livre extends DocLibrairiePhysique {
         this.nbPages = nbPages;
         this.nomEditeur = nomEditeur;
         this.NumIsbn = numIsbn;
+        type = "Livre";
     }
     
     Livre()

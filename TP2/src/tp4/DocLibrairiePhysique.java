@@ -10,7 +10,7 @@ package tp4;
  * @author p1501257
  */
 public class DocLibrairiePhysique extends DocLibrairie {
-    protected String etat;
+    protected String etat, type = "";
     protected static int nbDoc = 0, nbDocEmprunte = 0, nbDocReserve = 0, nbDocRetour = 0; 
     protected int numeroCopie;
     protected MembreLibrairie membreEmprunteur, membreReserveur;
@@ -20,16 +20,8 @@ public class DocLibrairiePhysique extends DocLibrairie {
         
         super(codeArchivage,anneePublication,titre,auteurPrincipal);
         
-        if(verifNumero(numeroCopie) == true)
-        {
-            this.numeroCopie = numeroCopie;
-        }
-        else
-        {
-            System.out.println("Numero de copie invalide");
-        }
         nbDoc ++;   
-        
+        etat = "Disponible";
     }
     
     private boolean verifNumero(int numero)
@@ -70,6 +62,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
     {
         return nbDocRetour;
     }
+
     public MembreLibrairie getMembreReserveur()
     {
         if(this.membreReserveur == null)
@@ -129,12 +122,13 @@ public class DocLibrairiePhysique extends DocLibrairie {
     
     public void emprunt(MembreLibrairie membreEmprunteur)
     {
-        if(this.etat == "Disponible")
+        if(this.etat == "Disponible" && membreEmprunteur.peutEmprunterAutreDocument() == true)
         {
             etat = "Emprunte";
             this.membreEmprunteur = membreEmprunteur;
             nbDocEmprunte ++;
             System.out.println("Le livre a été emprunté par " + membreEmprunteur.getNom());
+            membreEmprunteur.emprunt();
         }
         else if(this.etat == "Reserve" && this.membreReserveur == membreEmprunteur)
         {
@@ -142,6 +136,11 @@ public class DocLibrairiePhysique extends DocLibrairie {
             this.membreReserveur = null;
             etat = "Emprunte";
             System.out.println("Le livre a été emprunté par " + membreEmprunteur.getNom());
+        }
+        else if(membreEmprunteur.peutEmprunterAutreDocument() == false)
+        {
+            System.out.println("Le membre emprunteur ne peut pas emprunter un autre document car il" +
+               " a emprunté déjà: " + membreEmprunteur.getnbDocEmprunt());
         }
         else
         {
@@ -169,6 +168,9 @@ public class DocLibrairiePhysique extends DocLibrairie {
         if (this.etat == "Emprunte" || this.etat == "Reserve")
         {
             this.etat = "Retourne";
+            
+            membreEmprunteur.retour();
+            
             this.membreEmprunteur = null;
             System.out.println("Le livre est dans la pile des retours");
             nbDocEmprunte --;

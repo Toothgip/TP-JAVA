@@ -18,11 +18,15 @@ public class TestCatalogueLibrairie {
     private static boolean quitter = false;
    
     private static Livre livre1 = new Livre("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc","PitracCorp","044524-454-5",12),
-                 livre2 = new Livre("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin","Hachette","005464578",42);
+                 livre2 = new Livre("967. 4987 T248O", 10, 2013, "Structures de Données", "M. Machin","Hachette","005464578",42),
+                  livre3 = new Livre("957 EDQ597 9547",42,2016,"Koman devenir Iffisssion","M.Sintur","Ceinture","ISBN-EF48494",1174);
     private static DocURL url1 = new DocURL("045640 450687", 2007, "PitracLeDieu",
           "Pitrac","www.pitracDieu.com","La vie résumée du Dieu Pitrac.");
     private static CD cd1 = new CD ("045646548 45FDGP",15, 2012, "Kinedaire",
-          "Cortex","1.Es Muy Bueno\n2.El Country\n3.La Surpreza\n4.The Egg");
+          "Cortex","1.Es Muy Bueno\n2.El Country\n3.La Surpreza\n4.The Egg"),
+          cd2 = new CD("0156457FDSE87",12,2010,"Kolossal","Aifdépé","1.Pas l'time\n2.Deuniaiser\n3.Coaifission");
+    
+    
     
     private static DocLibrairiePhysique docPhy= new DocLibrairiePhysique("", 0, 0, 
             "", "");
@@ -33,11 +37,14 @@ public class TestCatalogueLibrairie {
     public static void main(String[] args)
    {
        docs.add(livre1);
+       docs.add(livre2);
+       docs.add(livre3);
        docs.add(url1);
+       docs.add(cd1);
+       docs.add(cd2);
        
-       
-       membres.add(new MembreLibrairie("Pitrac", "Avenue Albert Einstein", "0822462246", 10));
-       membres.add(new MembreLibrairie("Zlatan","Rue Dunais","0687956412",11));
+       membres.add(new MembreEtudiant("Pitrac", "Avenue Albert Einstein", "0822462246", 10));
+       membres.add(new MembrePersonnel("Zlatan","Rue Dunais","0687956412",11));
                
        while(quitter == false)
        {
@@ -70,57 +77,63 @@ public class TestCatalogueLibrairie {
 
                    switch(choix)
                    {
-                       case 1:
+                       case 0:
                            docs.add(livre1);
                            break;
-                       case 2:
+                       case 1:
                            docs.add(livre2);
+                           break;
+                       case 2:
+                           docs.add(livre3);
                            break;
                        case 3:
                            docs.add(url1);
-                           break;
+                           break; 
                        case 4:
                            docs.add(cd1);
-                           break;    
+                           break;
+                       case 5:
+                           docs.add(cd2);
+                           break;
+                       default:
+                           System.out.println("Le chiffre entré n'est pas valide");
+                           break;
                    }               
                  break;
                case 4:
                    TestCatalogueLibrairie.afficheDoc();
 
-                   docs.remove(docs.get(choix-1));
+                   docs.remove(docs.get(choix));
 
                    break;
                case 5:
                    TestCatalogueLibrairie.afficheDoc();
                    TestCatalogueLibrairie.afficheMembre();
 
-                      docs.get(choix -1).emprunt(membres.get(choixMembre));
-
                   
+                   
+                      docs.get(choix).emprunt(membres.get(choixMembre));
+
                    break;
                case 6:
                    TestCatalogueLibrairie.afficheDoc();
                    TestCatalogueLibrairie.afficheMembre();
                    
                  
-                    docs.get(choix -1).reservation(membres.get(choixMembre));
+                    docs.get(choix).reservation(membres.get(choixMembre));
 
-                   
-                   
                     break;
                case 7:
                    TestCatalogueLibrairie.afficheDoc();
                    TestCatalogueLibrairie.afficheMembre();
                     
+                    docs.get(choix).annulReservation(membres.get(choixMembre));
 
-                    docs.get(choix -1).annulReservation(membres.get(choixMembre));
-
-                    
                     break;
                case 8:
                    TestCatalogueLibrairie.afficheDoc();
                    
-                    docs.get(choix -1).retour();
+                    docs.get(choix).retour();
 
                    break;
                case 9:
@@ -134,19 +147,18 @@ public class TestCatalogueLibrairie {
        }
    }
     
-    
    private static void afficheDoc()
     {
         System.out.println("Entrez le numero du document");
         int i = 0;
         while (i < docs.size() )
         {
-            System.out.println(i+1 + ". " + docs.get(i).getTitre() + " " + 
+            System.out.println(i+1 + ". " + docs.get(i).getType() + docs.get(i).getTitre() + " " + 
                     docs.get(i).getAuteurPrincipal());
             i++;
         }
         
-        choix = input.nextInt();
+        choix = input.nextInt() - 1;
     }
    
    
@@ -154,28 +166,34 @@ public class TestCatalogueLibrairie {
     {
         System.out.println("Entrez le membre");
         
-        System.out.println("1. " + membres.get(10).getNom()+ " Code abo: " + membres.get(10).getNumAbo());
-        System.out.println("2. " + membres.get(11).getNom() + " Code abo: " + membres.get(11).getNumAbo());
-        if(input.nextInt() == 1)
+        System.out.println("1. " + membres.get(0).getNom()+ " Code abo: " + 
+                membres.get(0).getNumAbo() + " est un membre " + membres.get(0).typeMembre);
+        System.out.println("2. " + membres.get(1).getNom() + " Code abo: " +
+                membres.get(1).getNumAbo() +" est un membre " + membres.get(1).typeMembre);
+        /*if(input.nextInt() == 1)
         {
             choixMembre = membres.get(10).getNumAbo();
         }
         else if(input.nextInt() == 2)
         {
             choixMembre = membres.get(11).getNumAbo();
-        }
+        }*/
+        
+        
+        choixMembre = input.nextInt() -1;
     }
     
     private static void choisiDoc()
     {
         System.out.println("Entrez le numero du document");
         
-        System.out.println("1. " + livre1.getTitre()+ " " + livre1.getAuteurPrincipal());
-        System.out.println("2. " + livre2.getTitre()+ " " + livre2.getAuteurPrincipal());
-        System.out.println("3. " + url1.getTitre()+ " " + url1.getAuteurPrincipal());
-        System.out.println("4. " + cd1.getTitre()+ " " + cd1.getAuteurPrincipal());
-                
+        System.out.println("1. Livre: " + livre1.getTitre()+ " " + livre1.getAuteurPrincipal());
+        System.out.println("2. Livre: " + livre2.getTitre()+ " " + livre2.getAuteurPrincipal());
+        System.out.println("3. Livre: " + livre3.getTitre()+ " " + livre3.getAuteurPrincipal());
+        System.out.println("4. URL " + url1.getTitre()+ " " + url1.getAuteurPrincipal());
+        System.out.println("5. CD " + cd1.getTitre()+ " " + cd1.getAuteurPrincipal());
+        System.out.println("6. CD " + cd2.getTitre()+ " " + cd2.getAuteurPrincipal());        
         
-        choix = input.nextInt();
+        choix = input.nextInt() -1;
     }
 }

@@ -7,8 +7,9 @@ package tp4;
 
 
 public class MembreLibrairie {
-    private String nom, adresse, numTel;
-    private int numAbo;
+    protected String nom, adresse, numTel, typeMembre = "";
+    protected int numAbo;
+    protected int nbDocEmprunt = 0;
     
     public MembreLibrairie(String nom,String adresse, String numTel, int numAbo)
     {
@@ -17,8 +18,7 @@ public class MembreLibrairie {
         this.numTel = numTel;
         this.numAbo = numAbo;
     }
-    
-    
+        
     public String getAdresse()
     {
         return adresse;
@@ -35,10 +35,36 @@ public class MembreLibrairie {
     {
         return numAbo;
     }
+    public int getnbDocEmprunt()
+    {
+        return nbDocEmprunt;
+    }
+    
+    public String getTypeMembre()
+    {
+        return typeMembre;
+    }
     
     public String toString ()
     {
         return("Membre :" + nom + " numéro abo: " + numAbo + " adresse: " + adresse + " numero telephone :" 
                 + numTel + "\n" );
     }
+    
+    public boolean peutEmprunterAutreDocument()
+    {
+        return true;
+    }
+    
+    
+    public void emprunt()
+    {
+        nbDocEmprunt ++;
+    }
+    
+    public void retour()
+    {
+        nbDocEmprunt --;
+    }
+    
 }

@@ -30,7 +30,7 @@ public class DocURL extends DocLibrairie{
     }
     
     public String toString(){
-        return super.toString() + " URL: " + URL + " description: " + description;
+        return "URL: " + URL + " description: " + description;
     }
     
 }

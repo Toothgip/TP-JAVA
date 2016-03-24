@@ -23,27 +23,43 @@ public class ListeMembres {
     }
     
     public void add(MembreLibrairie membre){
-        membres.add(membre);
+        
+        if (membre != null)
+        {
+            membres.add(membre);
+            System.out.println("Membre ajouté");
+        }
+        else 
+        {
+            System.out.println("Le membre n'existe pas");
+        }
+        
     }
     
     public void remove(MembreLibrairie membre){
         int i = 0;
-        while (i < nbMembre && membre != membres.get(i))
+        
+        if(membre != null)
         {
-            i++;
-        }
-        if (membre == membres.get(i))
-        {
-            membres.remove(i);
-            System.out.println("Le membre a été supprimé");
+            while (i < nbMembre && membre != membres.get(i))
+            {
+                i++;
+            }
+            if (membre == membres.get(i))
+            {
+                membres.remove(i);
+                System.out.println("Le membre a été supprimé");
+            }
+            else
+            {
+                System.out.println("Le membre n'est pas dans la liste");
+            }
         }
         else
-        {
-            System.out.println("Le membre n'est pas dans la liste");
-        }
+            System.out.println("Le membre n'existe pas");
     }
     
-        public MembreLibrairie get (int codeAbonne)
+    /*public MembreLibrairie get (int codeAbonne)
     {
         int i = 0;
         while (i < membres.size() && membres.get(i).getNumAbo() != codeAbonne)
@@ -56,7 +72,19 @@ public class ListeMembres {
         }
         System.out.println("Ce code abonné n'appartient à aucun membre");
         return null;                      
+    }*/
+    
+    
+    public MembreLibrairie get (int index)
+    {
+        if(index < membres.size() && index >= 0)
+        {
+            return membres.get(index);
+        }
+        System.out.println("Le membre cherché n'existe pas");
+        return null;
     }
+    
     
         
     public void affiche ()

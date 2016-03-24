@@ -18,10 +18,16 @@ public class CD extends DocLibrairiePhysique{
           String auteurPrincipal,String listeMorceaux){
         super( codeArchivage,numeroCopie,anneePublication,titre,auteurPrincipal);
         this.listeMorceaux = listeMorceaux;
-        
+        type = "CD";
     }
     
     CD(){
         super("", 0, 0 ,  "", "");
+    }
+    
+    public String toString()
+    {
+        return "CD " + codeArchivage + " " + titre + " écrit par "+ auteurPrincipal +
+                " édité par " + " sortie en " + anneePublication +  " etat : " + etat; 
     }
 }
