@@ -111,30 +111,52 @@ public class TestCatalogueLibrairie {
                    TestCatalogueLibrairie.afficheMembre();
 
                   
-                   
-                      docs.get(choix).emprunt(membres.get(choixMembre));
+                   if(docs.get(choix) != null)
+                   {
+                       docs.get(choix).emprunt(membres.get(choixMembre));
+                   }
+                   else
+                       System.out.println("Ce document n'existe pas");
+                      
 
                    break;
                case 6:
                    TestCatalogueLibrairie.afficheDoc();
                    TestCatalogueLibrairie.afficheMembre();
                    
+                 if(docs.get(choix) != null)
+                   {
+                        docs.get(choix).reservation(membres.get(choixMembre));
+                   }
+                 else
+                       System.out.println("Ce document n'existe pas");
                  
-                    docs.get(choix).reservation(membres.get(choixMembre));
-
                     break;
                case 7:
                    TestCatalogueLibrairie.afficheDoc();
                    TestCatalogueLibrairie.afficheMembre();
                     
-                    docs.get(choix).annulReservation(membres.get(choixMembre));
-
+                   if(docs.get(choix) != null)
+                   {
+                        docs.get(choix).annulReservation(membres.get(choixMembre));
+                   }
+                   else
+                       System.out.println("Ce document n'existe pas");
+                   
+                   
                     break;
                case 8:
                    TestCatalogueLibrairie.afficheDoc();
                    
-                    docs.get(choix).retour();
-
+                   
+                   if(docs.get(choix) != null)
+                   {
+                         docs.get(choix).retour();
+                   }
+                   else
+                       System.out.println("Ce document n'existe pas");
+                   
+                   
                    break;
                case 9:
                    quitter = true;
