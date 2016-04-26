@@ -5,6 +5,7 @@
  */
 package tp4;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class TestCatalogueLibrairie {
     private static CatalogueLibrairie docs = new CatalogueLibrairie();
     private static Scanner input;
-    private static int choix, choixMembre;
+    private static int choix = -1, choixMembre, nbMorceau, compteur;
     private static boolean quitter = false;
    
     private static Livre livre1 = new Livre("004. 178 K20PM", 10, 2015, "Introduction à Java", "J. Leblanc","PitracCorp","044524-454-5",12),
@@ -22,13 +23,18 @@ public class TestCatalogueLibrairie {
                   livre3 = new Livre("957 EDQ597 9547",42,2016,"Koman devenir Iffisssion","M.Sintur","Ceinture","ISBN-EF48494",1174);
     private static DocURL url1 = new DocURL("045640 450687", 2007, "PitracLeDieu",
           "Pitrac","www.pitracDieu.com","La vie résumée du Dieu Pitrac.");
-    private static CD cd1 = new CD ("045646548 45FDGP",15, 2012, "Kinedaire",
-          "Cortex","1.Es Muy Bueno\n2.El Country\n3.La Surpreza\n4.The Egg"),
-          cd2 = new CD("0156457FDSE87",12,2010,"Kolossal","Aifdépé","1.Pas l'time\n2.Deuniaiser\n3.Coaifission");
+
     
+    private static String newCode, newTitre, newDesc, newAuteur, newEditeur, newIsbn, newUrl,
+                            newDescription, newMor;
     
+    private static ArrayList<String> newMorceau;
     
-    private static DocLibrairiePhysique docPhy= new DocLibrairiePhysique("", 0, 0, 
+    private static int newAnnee, newPage, newCopie;
+    
+    private static DocLibrairie docUser;
+    
+    private static DocLibrairiePhysique docPhy = new DocLibrairiePhysique("", 0, 0, 
             "", "");
     
     
@@ -40,8 +46,6 @@ public class TestCatalogueLibrairie {
        docs.add(livre2);
        docs.add(livre3);
        docs.add(url1);
-       docs.add(cd1);
-       docs.add(cd2);
        
        membres.add(new MembreEtudiant("Pitrac", "Avenue Albert Einstein", "0822462246", 10));
        membres.add(new MembrePersonnel("Zlatan","Rue Dunais","0687956412",11));
@@ -56,8 +60,9 @@ public class TestCatalogueLibrairie {
             System.out.println("6. Faire une réservation");
             System.out.println("7. Annuler une réservation");
             System.out.println("8. Retourner un livre");
-            System.out.println("9.Quitter");
-
+            System.out.println("9.Creer Doc");
+            System.out.println("10.Quitter");
+            
            input = new Scanner(System.in);
            switch(input.nextInt())
            {
@@ -89,12 +94,6 @@ public class TestCatalogueLibrairie {
                        case 3:
                            docs.add(url1);
                            break; 
-                       case 4:
-                           docs.add(cd1);
-                           break;
-                       case 5:
-                           docs.add(cd2);
-                           break;
                        default:
                            System.out.println("Le chiffre entré n'est pas valide");
                            break;
@@ -159,8 +158,11 @@ public class TestCatalogueLibrairie {
                    
                    break;
                case 9:
+                   TestCatalogueLibrairie.creerDoc();
+                   break;   
+               case 10:
                    quitter = true;
-                   break;    
+                   break; 
                default:
                  System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
                    break;  
@@ -213,9 +215,116 @@ public class TestCatalogueLibrairie {
         System.out.println("2. Livre: " + livre2.getTitre()+ " " + livre2.getAuteurPrincipal());
         System.out.println("3. Livre: " + livre3.getTitre()+ " " + livre3.getAuteurPrincipal());
         System.out.println("4. URL " + url1.getTitre()+ " " + url1.getAuteurPrincipal());
-        System.out.println("5. CD " + cd1.getTitre()+ " " + cd1.getAuteurPrincipal());
-        System.out.println("6. CD " + cd2.getTitre()+ " " + cd2.getAuteurPrincipal());        
+              
         
         choix = input.nextInt() -1;
+    }
+    
+    
+    private static void creerDoc()
+    {
+        while (choix == -1)
+        {
+            System.out.println("Entrer le type de documents");
+            System.out.println("1. Livre");
+            System.out.println("2. CD");
+            System.out.println("3. DocUrl");
+            choix = input.nextInt();
+
+            System.out.println("Entrer le code d'archivage");
+
+            newCode = input.nextLine();
+            newCode = input.nextLine();
+
+
+            System.out.println("Entrer le Titre ou nom de du document");
+
+            newTitre = input.nextLine();
+
+            System.out.println("Entrer la date de création du document ou de publication");
+            newAnnee = input.nextInt();
+       
+            switch(choix)
+            {
+                case 1://Creation de livre
+
+                    System.out.println("Entrer le  nom de l'auteur du document");
+
+                    newAuteur = input.nextLine();
+                    newAuteur = input.nextLine();
+
+                    System.out.println("Entrer le  nom de l'editeur");
+                    newEditeur = input.nextLine();
+
+                    System.out.println("Entrer le  nombre de page du document");
+                    newPage = input.nextInt();
+
+                    System.out.println("Entre le numero de copie");
+                    newCopie = input.nextInt();
+
+                    newIsbn = input.nextLine();
+
+                    System.out.println("Entre le numero ISBN");
+                    newIsbn = input.nextLine();
+
+                    docs.add(new Livre(newCode, newCopie, newAnnee, newTitre, newAuteur, newEditeur,
+                                        newIsbn, newPage));
+
+                    break;
+                case 2: //Crétion CD
+                    System.out.println("Entre le numero de copie");
+                    newCopie = input.nextInt();
+
+
+                    System.out.println("Entrer le  nom de l'auteur du document");
+
+                    newAuteur = input.nextLine();
+                    newAuteur = input.nextLine();
+                    
+                    System.out.println("Entrer le nombre de morceaux");
+                    nbMorceau = input.nextInt();
+                    input.nextLine();
+                    compteur = 0;
+                    while(compteur < nbMorceau)
+                    {
+                        System.out.println("Entrer la liste des morceaux");
+                        newMor = input.nextLine();
+                        input.nextLine();
+                        if(newMor != null)
+                        {
+                            newMorceau.add(newMor);
+                        }
+                        
+                        compteur++;
+                    }
+
+                    docs.add(new CD(newCode, newCopie, newAnnee, newTitre, newAuteur, newMorceau));
+                    break;
+
+                case 3: //Création DocURL
+                    System.out.println("Entrer le  nom de l'auteur du site");
+
+                    newAuteur = input.nextLine();
+                    newAuteur = input.nextLine();
+
+                    System.out.println("Entrer l'url du site");
+
+                    newUrl = input.nextLine();
+
+
+                    System.out.println("Entrer une breve description du site");
+
+                    newUrl = input.nextLine();
+
+                    docs.add(new DocURL(newCode, newAnnee, newTitre, newAuteur, newUrl, newDescription));
+                    break;
+
+                default:
+                        System.out.println("Le chiffre entré n'est pas valide");    //Faire un truc qui redemarre
+                        choix = -1;
+                       break;  
+            }
+        }
+        System.out.println("Le document a été ajouté au catalogue");
     }
 }

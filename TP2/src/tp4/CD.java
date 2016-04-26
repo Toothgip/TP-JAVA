@@ -5,6 +5,8 @@
  */
 package tp4;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author p1501257
@@ -12,12 +14,18 @@ package tp4;
 public class CD extends DocLibrairiePhysique{
     
     
-    protected String listeMorceaux;
+    protected ArrayList<String> listeMorceaux;
+    private int i = 0;
     
     public CD (String codeArchivage, int numeroCopie, int anneePublication, String titre,
-          String auteurPrincipal,String listeMorceaux){
+          String auteurPrincipal, ArrayList<String> listeMorceaux){
         super( codeArchivage,numeroCopie,anneePublication,titre,auteurPrincipal);
-        this.listeMorceaux = listeMorceaux;
+        
+        while(i < listeMorceaux.size())
+        {
+            this.listeMorceaux.add(listeMorceaux.get(i)) ;
+            i++;
+        }
         type = "CD";
     }
     
