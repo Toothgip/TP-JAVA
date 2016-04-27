@@ -20,7 +20,7 @@ public class MembreEtudiant extends MembreLibrairie {
     
     public boolean peutEmprunterAutreDocument()
     {
-        if(nbDocEmprunt < 4)
+        if(nbDocEmprunt < 0)
         {
             return true;
         }

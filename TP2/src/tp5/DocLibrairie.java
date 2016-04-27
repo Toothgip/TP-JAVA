@@ -1,11 +1,11 @@
 
-package tp4;
+package tp5;
 
 public class DocLibrairie {
     
     protected int anneePublication;
-    protected String titre, auteurPrincipal, codeArchivage, type = "";
-    protected MembreLibrairie membreEmprunteur, membreReserveur;
+    protected String titre, auteurPrincipal, codeArchivage, type = "", etat;
+    protected Notifiable membreEmprunteur, membreReserveur;
     
     public DocLibrairie(String codeArchivage, int anneePublication, String titre,
             String auteurPrincipal)
@@ -29,7 +29,11 @@ public class DocLibrairie {
     }
     
     //Accesseur 
-        
+
+    public Notifiable getMembreReserveur() {
+        return membreReserveur;
+    }
+
     public String getCodeArchivage(){
         return codeArchivage;
     }
@@ -49,12 +53,6 @@ public class DocLibrairie {
         return type;
     }
 
-    public MembreLibrairie getMembreReserveur() {
-        return membreReserveur;
-    }
-    
-    
-    
     public String toString ()
     {
         return("Document : "+ codeArchivage + " " + titre + " " + auteurPrincipal +
@@ -99,7 +97,7 @@ public class DocLibrairie {
         }
     }
     
-    public void reservation(MembreLibrairie membreReserveur)
+    public void reservation(Notifiable membreReserveur)
     {
         System.out.println("Ce document n'est pas réservable");
     }
@@ -109,7 +107,7 @@ public class DocLibrairie {
         System.out.println("Ce document n'est pas empruntable");
     }
         
-    public void annulReservation(MembreLibrairie membreReserveur)
+    public void annulReservation(Notifiable membreReserveur)
     {
         System.out.println("Ce document n'est pas réservable");
     }

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp4;
+package tp5;
 
+import tp4.*;
 import java.util.ArrayList;
 
 /**
@@ -25,11 +26,11 @@ public class CatalogueLibrairie {
     {
         if (doc != null)
         {
-            if(doc instanceof Livre)
+            if(doc.equals(new Livre()))
             {
                 nbLivre ++;
             }
-            else if (doc instanceof CD)
+            else if (doc.equals(new CD()))
             {
                 nbCD ++;
             }

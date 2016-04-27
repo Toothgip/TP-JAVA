@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp4;
+package tp5;
+
+
 
 /**
  *
  * @author p1501257
  */
 public class DocLibrairiePhysique extends DocLibrairie {
-    protected String etat, type = "";
+    protected String type = "";
     protected static int nbDoc = 0, nbDocEmprunte = 0, nbDocReserve = 0, nbDocRetour = 0; 
     protected int numeroCopie;
     
@@ -63,7 +65,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
         return nbDocRetour;
     }
 
-    public MembreLibrairie getMembreReserveur()
+    public Notifiable getMembreReserveur()
     {
         if(this.membreReserveur == null)
         {
@@ -73,7 +75,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
         return this.membreReserveur;
     }
     
-    public MembreLibrairie getMembreEmprunteur()
+    public Notifiable getMembreEmprunteur()
     {
         if(this.membreEmprunteur == null)
         {
@@ -82,7 +84,6 @@ public class DocLibrairiePhysique extends DocLibrairie {
         
         return this.membreEmprunteur;
     }
-    
     
     
     //Mutateur
@@ -105,13 +106,13 @@ public class DocLibrairiePhysique extends DocLibrairie {
    
     //Getion Etat livres
     
-    public void reservation(MembreLibrairie membreReserveur)
+    public void reservation(Notifiable membreReserveur)
     {
         if(this.etat == "Emprunte")
         {
             System.out.println("Le livre a été reservé par " + membreReserveur.getNom());
             etat = "Reserve";
-            this.membreReserveur = membreReserveur;
+            this.membreReserveur = (MembreLibrairie)membreReserveur;
             nbDocReserve ++;
         }
         else
@@ -122,6 +123,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
     
     public void emprunt(MembreLibrairie membreEmprunteur)
     {
+        //Si le membre peut emprunter et si le doc est dispo
         if(this.etat == "Disponible" && membreEmprunteur.peutEmprunterAutreDocument() == true)
         {
             etat = "Emprunte";
@@ -130,6 +132,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
             System.out.println("Le livre a été emprunté par " + membreEmprunteur.getNom());
             membreEmprunteur.emprunt();
         }
+        //Si le doc est reservé par celui qui souhaite l'emprunter
         else if(this.etat == "Reserve" && this.membreReserveur == membreEmprunteur)
         {
             this.membreEmprunteur = membreEmprunteur;
@@ -148,7 +151,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
         }
     }
         
-    public void annulReservation(MembreLibrairie membreReserveur)
+    public void annulReservation(Notifiable membreReserveur)
     {
         if(membreReserveur == this.membreReserveur)
         {
@@ -195,9 +198,9 @@ public class DocLibrairiePhysique extends DocLibrairie {
             System.out.println("Le livre est déjà rangé ou réservé");
         }
     }
+   
     
     public String toString(){
         return super.toString() + " numéro de copie " + numeroCopie + " Etat: " + etat; 
     }
-    
 }

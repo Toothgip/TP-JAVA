@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp4;
+package tp5;
 
 import java.util.ArrayList;
 
@@ -21,11 +21,9 @@ public class CD extends DocLibrairiePhysique{
           String auteurPrincipal, String listeMorceaux){
         super( codeArchivage,numeroCopie,anneePublication,titre,auteurPrincipal);
         
-
-        this.listeMorceaux = listeMorceaux ;
-        i++;
-            
-        type = "CD";
+       this.listeMorceaux = listeMorceaux;
+       
+       type = "CD";
     }
     
     CD(){

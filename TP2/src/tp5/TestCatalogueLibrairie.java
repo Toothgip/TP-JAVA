@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp4;
+package tp5;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -198,14 +198,6 @@ public class TestCatalogueLibrairie {
                 membres.get(0).getNumAbo() + " est un membre " + membres.get(0).typeMembre);
         System.out.println("2. " + membres.get(1).getNom() + " Code abo: " +
                 membres.get(1).getNumAbo() +" est un membre " + membres.get(1).typeMembre);
-        /*if(input.nextInt() == 1)
-        {
-            choixMembre = membres.get(10).getNumAbo();
-        }
-        else if(input.nextInt() == 2)
-        {
-            choixMembre = membres.get(11).getNumAbo();
-        }*/
         
         
         choixMembre = input.nextInt() -1;
