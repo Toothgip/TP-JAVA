@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class MembreEtudiant extends MembreLibrairie implements Notifiable {
     
     private Scanner input;
+    int choix;
     
     public MembreEtudiant(String nom,String adresse, String numTel, int numAbo)
     {
@@ -28,19 +29,20 @@ public class MembreEtudiant extends MembreLibrairie implements Notifiable {
     
     public void DocDisponible(DocLibrairie doc)
     {
-        if(doc.etat == "Disponible" && doc.getMembreReserveur() == this)
-        {
+        
             System.out.println("Le document " + doc.getTitre() + " est disponible\n" +
-                                "Souhaitez vous le reserver ? (y/n)");
+                                "Souhaitez vous le reserver ? 1- Oui 2-Non/n)");
+            input = new Scanner(System.in);
             
-            if(input.nextLine() == "y")
+            choix = input.nextInt();
+            if(choix == 1)
             {
                 doc.emprunt(this);
                 
                 doc.annulReservation(this);
             }
            
-        }
+      
         
     }
     

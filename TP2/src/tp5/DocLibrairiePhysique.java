@@ -170,7 +170,7 @@ public class DocLibrairiePhysique extends DocLibrairie {
     {
         if (this.etat == "Emprunte" || this.etat == "Reserve")
         {
-            this.etat = "Retourne";
+            this.etat = "Disponible";
             
             membreEmprunteur.retour();
             
@@ -178,6 +178,12 @@ public class DocLibrairiePhysique extends DocLibrairie {
             System.out.println("Le livre est dans la pile des retours");
             nbDocEmprunte --;
             nbDocRetour ++;
+            
+            if(membreReserveur != null )
+            {
+                membreReserveur.DocDisponible(this);
+            }
+            
         }
         else
         {
