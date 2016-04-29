@@ -1,5 +1,7 @@
 
-package tp5;
+package tp6;
+
+import tp5.*;
 
 public class DocLibrairie {
     
