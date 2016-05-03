@@ -19,7 +19,7 @@ public class CD extends DocLibrairiePhysique{
     private int i = 0;
     
     public CD (String codeArchivage, int numeroCopie, int anneePublication, String titre,
-          String auteurPrincipal, String listeMorceaux){
+          String auteurPrincipal, String listeMorceaux) throws ErreurCopie{
         super( codeArchivage,numeroCopie,anneePublication,titre,auteurPrincipal);
         
        this.listeMorceaux = listeMorceaux;
@@ -27,7 +27,7 @@ public class CD extends DocLibrairiePhysique{
        type = "CD";
     }
     
-    CD(){
+    CD() throws ErreurCopie{
         super("", 0, 0 ,  "", "");
     }
     

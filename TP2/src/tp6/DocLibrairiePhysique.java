@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tp6;
 
 import tp5.*;
@@ -20,25 +16,19 @@ public class DocLibrairiePhysique extends DocLibrairie {
     
     
     public DocLibrairiePhysique(String codeArchivage, int numeroCopie, int anneePublication, 
-            String titre, String auteurPrincipal){
+            String titre, String auteurPrincipal) throws ErreurCopie{
         
         super(codeArchivage,anneePublication,titre,auteurPrincipal);
+        
+        if(numeroCopie < 0)
+        {
+            throw new ErreurCopie(numeroCopie);
+        }
         
         nbDoc ++;   
         etat = "Disponible";
     }
-    
-    private boolean verifNumero(int numero)
-    {
-        if(numero > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+   
     
     //Acesseurs
     public int getNumeroCopie(){

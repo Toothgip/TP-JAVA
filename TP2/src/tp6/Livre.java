@@ -19,18 +19,23 @@ public class Livre extends DocLibrairiePhysique {
     
     
     Livre(String codeArchivage, int numeroCopie, int anneePublication, String titre,
-          String auteurPrincipal, String nomEditeur, String numIsbn, int nbPages)
+          String auteurPrincipal, String nomEditeur, String numIsbn, int nbPages) throws ErreurCopie
     {
-        super(codeArchivage, numeroCopie, anneePublication, titre, auteurPrincipal);
+        
+            super(codeArchivage, numeroCopie, anneePublication, titre, auteurPrincipal);
+      
         this.nbPages = nbPages;
         this.nomEditeur = nomEditeur;
         this.NumIsbn = numIsbn;
         type = "Livre";
     }
     
-    Livre()
+    Livre() throws ErreurCopie
     {
-        super("", 0, 0 ,  "", "");
+        
+            super("", 0, 0 ,  "", "");
+        
+      
     }
     
     

@@ -23,7 +23,7 @@ public class CatalogueLibrairie {
         docs = new ArrayList<DocLibrairie>(10);
     }
     
-    public void add (DocLibrairie doc)
+    public void add (DocLibrairie doc) throws ErreurCopie
     {
         if (doc != null)
         {
@@ -45,7 +45,7 @@ public class CatalogueLibrairie {
         }
     }
     
-    public void remove (DocLibrairie doc)
+    public void remove (DocLibrairie doc) throws ErreurCopie
     {
         if(docs.size() != 0 && doc != null)
         {
@@ -89,11 +89,19 @@ public class CatalogueLibrairie {
     
     public DocLibrairie get (int i)
     {
-        if(i < docs.size() && i >= 0)
-        {
-            return docs.get(i);
-        }
-        return null;             
+            try
+            {
+                return docs.get(i);
+            }
+            catch(ArrayIndexOutOfBoundsException probleme)
+            {
+                System.out.println("Ereur indice qui sort du catalogue");
+            }
+            finally
+            {
+                return null; 
+            }
+                    
     }
     
     public void affiche ()
