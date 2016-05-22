@@ -5,7 +5,8 @@
  */
 package tp7;
 
-
+import tp6.*;
+import tp5.*;
 import java.util.Scanner;
 
 public class MembreEtudiant extends MembreLibrairie implements Notifiable {

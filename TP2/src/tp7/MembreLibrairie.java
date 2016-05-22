@@ -5,8 +5,7 @@
  */
 package tp7;
 
-import tp6.*;
-import tp5.*;
+
 
 
 public abstract class  MembreLibrairie implements Notifiable {

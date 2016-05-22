@@ -5,8 +5,7 @@
  */
 package tp6;
 
-import tp5.*;
-import tp4.*;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +22,7 @@ public class CatalogueLibrairie {
         docs = new ArrayList<DocLibrairie>(10);
     }
     
-    public void add (DocLibrairie doc) throws ErreurCopie
+    public void add (DocLibrairie doc) 
     {
         if (doc != null)
         {
@@ -45,7 +44,7 @@ public class CatalogueLibrairie {
         }
     }
     
-    public void remove (DocLibrairie doc) throws ErreurCopie
+    public void remove (DocLibrairie doc) 
     {
         if(docs.size() != 0 && doc != null)
         {

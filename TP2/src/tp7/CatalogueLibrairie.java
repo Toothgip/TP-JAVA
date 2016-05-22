@@ -6,7 +6,7 @@
 package tp7;
 
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -23,7 +23,7 @@ public class CatalogueLibrairie {
         docs = new LinkedList<DocLibrairie>();
     }
     
-    public void add (DocLibrairie doc) throws ErreurCopie
+    public void add (DocLibrairie doc) 
     {
         if (doc != null)
         {
@@ -45,16 +45,17 @@ public class CatalogueLibrairie {
         }
     }
     
-    public void remove (DocLibrairie doc) throws ErreurCopie
+    public void remove (DocLibrairie doc) 
     {
         if(docs.size() != 0 && doc != null)
         {
-            int i = 0;
-            while (i < nbDoc && doc != docs.get(i))
+            //Utilisation d' un iterateur 
+            Iterator<DocLibrairie> docIte = docs.iterator();
+            while (docIte.hasNext() && doc != docIte)
             {
-                i++;
+                docIte.next();
             }
-            if (doc == docs.get(i))
+            if (doc == docIte)
             {
                 if(doc.equals(new Livre()))
                 {
@@ -64,7 +65,7 @@ public class CatalogueLibrairie {
                 {
                     nbCD --;
                 }
-                docs.remove(i);
+                docIte.remove();
                 System.out.println("Le document a été supprimé");
             }
             else
@@ -106,15 +107,16 @@ public class CatalogueLibrairie {
     
     public void affiche ()
     {
-        int i = 0;
-        while (i< docs.size())
+        
+        //Boucle for optmisé
+        for(DocLibrairie doc : docs)
         {
-            if(docs.get(i).getEtat() != "Indisponible")
+            if(doc.getEtat() != "Indisponible")
             {
-                System.out.println(docs.get(i).toString());
+                System.out.println(doc.toString());
             }
             
-            i++;
+            
         }
     }
     

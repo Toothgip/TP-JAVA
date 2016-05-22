@@ -1,10 +1,9 @@
 
 package tp7;
 
-import tp6.*;
-import tp5.*;
 
-public class DocLibrairie {
+
+public class DocLibrairie implements Comparable {
     
     protected int anneePublication;
     protected String titre, auteurPrincipal, codeArchivage, type = "", etat;
@@ -28,6 +27,11 @@ public class DocLibrairie {
         
         this.auteurPrincipal = auteurPrincipal;
         this.titre = titre;
+        
+    }
+    
+    public DocLibrairie()
+    {
         
     }
     
@@ -127,6 +131,17 @@ public class DocLibrairie {
     public void retour()
     {
         System.out.println("Ce document n'est pas retournable");
+    }
+
+    public int compareTo(Object o) {
+        
+        DocLibrairie doc = (DocLibrairie)o;
+        
+        return this.getCodeArchivage().compareTo(doc.getCodeArchivage());
+        /*  Renvoi négatif si this est avant le docParametre
+            Renvoie Positif si docParametre est avant this
+            Renvoie 0 si ils sont équivalents
+        */
     }
     
     

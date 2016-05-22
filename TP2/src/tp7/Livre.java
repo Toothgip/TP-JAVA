@@ -5,10 +5,6 @@
  */
 package tp7;
 
-import tp6.*;
-import tp5.*;
-import tp4.*;
-
 /**
  *
  * @author Thomas
@@ -20,7 +16,7 @@ public class Livre extends DocLibrairiePhysique {
     
     
     Livre(String codeArchivage, int numeroCopie, int anneePublication, String titre,
-          String auteurPrincipal, String nomEditeur, String numIsbn, int nbPages) throws ErreurCopie
+          String auteurPrincipal, String nomEditeur, String numIsbn, int nbPages) 
     {
         
             super(codeArchivage, numeroCopie, anneePublication, titre, auteurPrincipal);
@@ -31,7 +27,7 @@ public class Livre extends DocLibrairiePhysique {
         type = "Livre";
     }
     
-    Livre() throws ErreurCopie
+    Livre() 
     {
         
             super("", 0, 0 ,  "", "");

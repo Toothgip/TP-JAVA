@@ -16,14 +16,10 @@ public class DocLibrairiePhysique extends DocLibrairie {
     
     
     public DocLibrairiePhysique(String codeArchivage, int numeroCopie, int anneePublication, 
-            String titre, String auteurPrincipal) throws ErreurCopie{
+            String titre, String auteurPrincipal){
         
         super(codeArchivage,anneePublication,titre,auteurPrincipal);
         
-        if(numeroCopie < 0)
-        {
-            throw new ErreurCopie(numeroCopie);
-        }
         
         nbDoc ++;   
         etat = "Disponible";

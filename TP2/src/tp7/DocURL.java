@@ -5,9 +5,7 @@
  */
 package tp7;
 
-import tp6.*;
-import tp5.*;
-import tp4.*;
+
 
 /**
  *
@@ -35,7 +33,7 @@ public class DocURL extends DocLibrairie{
     }
     
     public String toString(){
-        return "URL: " + URL + " description: " + description;
+        return " Code " + codeArchivage + " description: " + " URL: " + URL +  description;
     }
     
 }

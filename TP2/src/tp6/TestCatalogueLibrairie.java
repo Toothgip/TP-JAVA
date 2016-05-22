@@ -29,7 +29,7 @@ public class TestCatalogueLibrairie {
     
     private static ListeMembres membres = new ListeMembres();
     
-    public static void main(String[] args) throws ErreurCopie
+    public static void main(String[] args) 
    {
         //Instanciation des docs de base
         docPhy = new DocLibrairiePhysique("", 0, 0, "", "");
@@ -226,7 +226,7 @@ public class TestCatalogueLibrairie {
     }
     
     
-    private static void creerDoc() throws ErreurCopie
+    private static void creerDoc() 
     {
         while (choix == -1)
         {
@@ -282,26 +282,18 @@ public class TestCatalogueLibrairie {
                 case 1://Creation de livre
 
                     System.out.println("Entrer le  nom de l'auteur du document");
-                    try
-                    {
-                        newAuteur = input.nextLine();
-                        newAuteur = input.nextLine();
-                    }
-                    catch(InputMismatchException problemeUser)
-                    {
-                        System.out.println("Erreur de saisie");
-                    }
+                  
+                    
+                    newAuteur = input.nextLine();
+                    newAuteur = input.nextLine();
                     
 
+
                     System.out.println("Entrer le  nom de l'editeur");
-                    try
-                    {
-                        newEditeur = input.nextLine();
-                    }
-                    catch(InputMismatchException problemeUser)
-                    {
-                        System.out.println("Erreur de saisie");
-                    }
+                  
+                    
+                    newEditeur = input.nextLine();
+                    
 
                     System.out.println("Entrer le  nombre de page du document");
                     try{
@@ -310,16 +302,27 @@ public class TestCatalogueLibrairie {
                     catch(InputMismatchException problemeUser)
                     {
                         System.out.println("Erreur de saisie");
+                        
+                        
                     }
 
                     System.out.println("Entre le numero de copie");
                     try
-                    {
+                    {   
+                        
                         newCopie = input.nextInt();
+                        if(newCopie < 0)
+                        {
+                            throw new ErreurCopie(newCopie);
+                        }
                     }
                     catch(InputMismatchException problemeUser)
                     {
                         System.out.println("Erreur de saisie");
+                    }
+                    catch(ErreurCopie probleme)
+                    {
+                        System.out.println("Erreur nombre negatif a la declaration du doc");
                     }
 
                     System.out.println("Entre le numero ISBN");
@@ -331,14 +334,10 @@ public class TestCatalogueLibrairie {
                     {
                         System.out.println("Erreur de saisie");
                     }
-                    try{
-                        docs.add(new Livre(newCode, newCopie, newAnnee, newTitre, newAuteur, newEditeur,
+
+                    docs.add(new Livre(newCode, newCopie, newAnnee, newTitre, newAuteur, newEditeur,
                                         newIsbn, newPage));
-                    }
-                    catch(ErreurCopie probleme)
-                    {
-                        System.out.println("Erreur nombre negatif a la declaration du doc");
-                    }
+
                     
                     
                     break;
@@ -357,13 +356,10 @@ public class TestCatalogueLibrairie {
                     newMor = input.nextLine();
                         
 
-                    try{
-                        docs.add(new CD(newCode, newCopie, newAnnee, newTitre, newAuteur, newMorceau));
-                    }
-                    catch(ErreurCopie probleme)
-                    {
-                        System.out.println("Erreur nombre negatif a la declaration du doc");
-                    }
+                  
+                    docs.add(new CD(newCode, newCopie, newAnnee, newTitre, newAuteur, newMorceau));
+               
+
 
                     
                     break;
